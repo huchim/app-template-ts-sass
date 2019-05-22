@@ -19,12 +19,29 @@ module.exports = {
         ],
     },
     module: {
-        rules: [{
-            test: /\.tsx?$/,
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: [
+                    { loader: "happypack/loader?id=ts"},
+                ],
+            },
+            {
+            test: /\.scss$/,
             use: [
-                { loader: "happypack/loader?id=ts"},
-            ],
-        }],
+                'style-loader',
+                'css-loader',
+                {
+                    loader: 'sass-loader',
+                    options: {
+                        includePaths: [
+                            "./scss"
+                        ],
+                    },
+                },
+            ]
+        },
+        ],
     },
     plugins: [
         new HappyPack({
